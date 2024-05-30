@@ -15,6 +15,8 @@ public record DatosRegistroMedico(
         @Email
         String email,
         @NotBlank
+        String telefono,
+        @NotBlank
         @Pattern(regexp = "\\d{4,6}")   // Que sea de 4 a 6 digitos
         String documento,
         @NotNull
@@ -22,4 +24,5 @@ public record DatosRegistroMedico(
         @NotNull                        // Not null porque es un objeto
         @Valid
         DatosDireccion direccion) {
+
 }
