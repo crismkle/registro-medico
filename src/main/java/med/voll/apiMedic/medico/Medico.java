@@ -28,6 +28,21 @@ public class Medico {
     @Embedded
     private Direccion direccion;
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public Especialidad getEspecialidad() {
+        return especialidad;
+    }
 
     public Medico(DatosRegistroMedico datosRegistroMedico) {
         this.nombre = datosRegistroMedico.nombre();
@@ -37,4 +52,6 @@ public class Medico {
         this.especialidad = datosRegistroMedico.especialidad();
         this.direccion = new Direccion(datosRegistroMedico.direccion());
     }
+
+
 }

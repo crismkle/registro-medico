@@ -1,14 +1,14 @@
 package med.voll.apiMedic.controller;
 
 import jakarta.validation.Valid;
+import med.voll.apiMedic.medico.DatosListadoMedico;
 import med.voll.apiMedic.medico.DatosRegistroMedico;
 import med.voll.apiMedic.medico.Medico;
 import med.voll.apiMedic.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/medicos")
@@ -20,5 +20,12 @@ public class MedicoController {
     @PostMapping
     public void registrarMedico(@RequestBody @Valid DatosRegistroMedico datosRegistroMedico){
         medicoRpository.save(new Medico(datosRegistroMedico));
+    }
+
+    @GetMapping
+    public List<DatosListadoMedico> listadoMedicos(){
+        return medicoRpository.findAll().stream()
+                .map(DatosListadoMedico::new)    // Con cada elemento crea un nuevo DatosListadoMedico, necesita un constructor (no me toma el Lombok, por eso creo los getters)
+                .toList();
     }
 }
