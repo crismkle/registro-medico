@@ -33,8 +33,11 @@ public class MedicoController {
     // Ahora con paginación
     @GetMapping
     public Page<DatosListadoMedico> listadoMedicos(@PageableDefault(size = 2) Pageable paginacion) {
-        return medicoRpository.findAll(paginacion)
-                .map(DatosListadoMedico::new);    // Con cada elemento crea un nuevo DatosListadoMedico, necesita un constructor (no me toma el Lombok, por eso creo los getters)
+//        return medicoRpository.findAll(paginacion)
+//                .map(DatosListadoMedico::new);    // Con cada elemento crea un nuevo DatosListadoMedico, necesita un constructor (no me toma el Lombok, por eso creo los getters)
+
+        return medicoRpository.findByActivoTrue(paginacion)
+                .map(DatosListadoMedico::new);          // Filtra los médicos lógicos
     }
 
     @PutMapping
@@ -44,6 +47,22 @@ public class MedicoController {
         medico.actualizarDatos(datosActualizarMedico);
     }
 
-    
+//    DELETE físico de la BD
+//    @DeleteMapping("/{id}")
+//    @Transactional
+//    public void eliminarMedico(@PathVariable Long id){
+//        Medico medico = medicoRpository.getReferenceById(id);
+//        medicoRpository.delete(medico);
+//    }
+
+
+    // DELETE lógico de la BD
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void eliminarMedico(@PathVariable Long id){
+        Medico medico = medicoRpository.getReferenceById(id);
+        medico.desactivarMedico();
+    }
+
 
 }
