@@ -33,10 +33,16 @@ Instalar MySQL. Configurar variables de entorno.
 
 ## 💻 Ejemplo
 
-![image](https://github.com/crismkle/registro-medico/assets/122938039/845b383b-7f89-43ac-a86d-11bec65594af)
+![image](https://github.com/crismkle/registro-medico/assets/122938039/21fe5055-e05c-4055-a41b-2841321195c2)
+
+![image](https://github.com/crismkle/registro-medico/assets/122938039/f354bbf6-7155-48b2-9e78-3d66aaae681d)
+
+![image](https://github.com/crismkle/registro-medico/assets/122938039/30906b96-dd3a-4f83-8755-97b6a9d6e62a)
+
+![image](https://github.com/crismkle/registro-medico/assets/122938039/bd04eecc-a433-4fcb-9295-aa36d1089b32)
 
 
-![image](https://github.com/crismkle/registro-medico/assets/122938039/41b077c7-a904-48cd-a623-5585bd8db11c)
+
 
 ## ✒️ Autor
 * **Cristian Muñoz** - [crismkle](https://github.com/crismkle)
