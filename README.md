@@ -6,11 +6,16 @@ El mismo consiste en una clínica médica, Voll Clinic.
 ## :clipboard: Enunciado
 
 ## :hammer:Objetivos del proyecto
+### Parte 1
 - Crear una API Rest
 - CRUD (Create, Read, Update, Delete)
 - Validaciones
 - Paginación y orden
-
+### Parte 2
+- Buenas prácticas en API
+- Tratamiento de errores
+- Autenticación y Autorización
+- Tokens JWT
 
 
 ## :toolbox: Tecnologías utilizadas
