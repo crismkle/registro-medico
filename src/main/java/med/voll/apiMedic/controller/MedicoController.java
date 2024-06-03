@@ -51,12 +51,12 @@ public class MedicoController {
 
     // Ahora con paginación
     @GetMapping
-    public Page<DatosListadoMedico> listadoMedicos(@PageableDefault(size = 2) Pageable paginacion) {
+    public ResponseEntity<Page> listadoMedicos(@PageableDefault(size = 2) Pageable paginacion) {
 //        return medicoRpository.findAll(paginacion)
 //                .map(DatosListadoMedico::new);    // Con cada elemento crea un nuevo DatosListadoMedico, necesita un constructor (no me toma el Lombok, por eso creo los getters)
 
-        return medicoRpository.findByActivoTrue(paginacion)
-                .map(DatosListadoMedico::new);          // Filtra los médicos lógicos
+        return ResponseEntity.ok(medicoRpository.findByActivoTrue(paginacion)
+                .map(DatosListadoMedico::new));          // Filtra los médicos lógicos
     }
 
     @PutMapping
@@ -89,7 +89,16 @@ public class MedicoController {
         return ResponseEntity.noContent().build();
     }
 
-    
+    @GetMapping("/{id}")
+    public ResponseEntity<DatosRespuestaMedico> retornaDatosMedicos(@PathVariable Long id){
+        Medico medico = medicoRpository.getReferenceById(id);
+        var datosMedico = new DatosRespuestaMedico(medico.getId(), medico.getNombre(),
+                medico.getEmail(), medico.getTelefono(),medico.getDocumento(), medico.getEspecialidad().toString(),
+                new DatosDireccion(medico.getDireccion().getCalle(), medico.getDireccion().getDistrito(),
+                        medico.getDireccion().getCiudad(), medico.getDireccion().getNumero(),
+                        medico.getDireccion().getComplemento()));
+        return ResponseEntity.ok(datosMedico);
+    }
 
 
 }
