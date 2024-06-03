@@ -1,11 +1,11 @@
-package med.voll.apiMedic.medico;
+package med.voll.apiMedic.domain.medico;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import med.voll.apiMedic.direccion.DatosDireccion;
+import med.voll.apiMedic.domain.direccion.DatosDireccion;
 
 public record DatosRegistroMedico(
 

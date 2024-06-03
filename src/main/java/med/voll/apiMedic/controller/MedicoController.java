@@ -2,8 +2,8 @@ package med.voll.apiMedic.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.voll.apiMedic.direccion.DatosDireccion;
-import med.voll.apiMedic.medico.*;
+import med.voll.apiMedic.domain.direccion.DatosDireccion;
+import med.voll.apiMedic.domain.medico.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
