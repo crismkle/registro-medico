@@ -2,11 +2,13 @@ package med.voll.apiMedic.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import med.voll.apiMedic.direccion.DatosDireccion;
 import med.voll.apiMedic.medico.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -42,9 +44,14 @@ public class MedicoController {
 
     @PutMapping
     @Transactional          // Hibernate mapea que cuando termine el método la transacción se va a liberar
-    public void actualizarMedico(@RequestBody @Valid DatosActualizarMedico datosActualizarMedico){  //Valida que el id no llegue null
+    public ResponseEntity actualizarMedico(@RequestBody @Valid DatosActualizarMedico datosActualizarMedico){  //Valida que el id no llegue null
         Medico medico = medicoRpository.getReferenceById(datosActualizarMedico.id());
         medico.actualizarDatos(datosActualizarMedico);
+        return ResponseEntity.ok(new DatosRespuestaMedico(medico.getId(), medico.getNombre(),
+                medico.getEmail(), medico.getTelefono(),medico.getDocumento(), medico.getEspecialidad().toString(),
+                new DatosDireccion(medico.getDireccion().getCalle(), medico.getDireccion().getDistrito(),
+                        medico.getDireccion().getCiudad(), medico.getDireccion().getNumero(),
+                        medico.getDireccion().getComplemento())));
     }
 
 //    DELETE físico de la BD
@@ -59,9 +66,10 @@ public class MedicoController {
     // DELETE lógico de la BD
     @DeleteMapping("/{id}")
     @Transactional
-    public void eliminarMedico(@PathVariable Long id){
+    public ResponseEntity eliminarMedico(@PathVariable Long id){
         Medico medico = medicoRpository.getReferenceById(id);
         medico.desactivarMedico();
+        return ResponseEntity.noContent().build();
     }
 
 

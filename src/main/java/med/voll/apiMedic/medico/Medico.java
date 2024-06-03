@@ -45,6 +45,14 @@ public class Medico {
         return especialidad;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
     public Medico(DatosRegistroMedico datosRegistroMedico) {
         this.activo = true;
         this.nombre = datosRegistroMedico.nombre();
