@@ -16,6 +16,7 @@ El mismo consiste en una clínica médica, Voll Clinic.
 - Tratamiento de errores
 - Autenticación y Autorización
 - Tokens JWT
+- Protección contra ataques (CSRF, clickjacking)
 
 
 ## :toolbox: Tecnologías utilizadas
