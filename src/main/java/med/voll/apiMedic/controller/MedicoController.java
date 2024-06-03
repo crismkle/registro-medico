@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 
 @RestController
@@ -20,8 +23,22 @@ public class MedicoController {
     private MedicoRepository medicoRpository;
 
     @PostMapping
-    public void registrarMedico(@RequestBody @Valid DatosRegistroMedico datosRegistroMedico){
-        medicoRpository.save(new Medico(datosRegistroMedico));
+    public ResponseEntity<DatosRespuestaMedico> registrarMedico(@RequestBody @Valid DatosRegistroMedico datosRegistroMedico, UriComponentsBuilder uriComponentsBuilder){
+        Medico medico = medicoRpository.save(new Medico(datosRegistroMedico));
+
+        DatosRespuestaMedico datosRespuestaMedico = new DatosRespuestaMedico(medico.getId(), medico.getNombre(),
+                medico.getEmail(), medico.getTelefono(),medico.getDocumento(), medico.getEspecialidad().toString(),
+                new DatosDireccion(medico.getDireccion().getCalle(), medico.getDireccion().getDistrito(),
+                        medico.getDireccion().getCiudad(), medico.getDireccion().getNumero(),
+                        medico.getDireccion().getComplemento()));
+
+        //URI url = "http://localhost:8080/medicos/" + medico.getId();
+        URI url = uriComponentsBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
+        return ResponseEntity.created(url).body(datosRespuestaMedico);
+
+        // return 201 Created
+        // URL donde encontrar al médico
+        // GET http://localhost:8080/medicos/xx Por Standart universal debe retornar la url para acceder al medico
     }
 
     // Devuelve los datos de una sola vez
@@ -71,6 +88,8 @@ public class MedicoController {
         medico.desactivarMedico();
         return ResponseEntity.noContent().build();
     }
+
+    
 
 
 }
