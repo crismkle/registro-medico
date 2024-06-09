@@ -27,29 +27,6 @@ public class Medico {
     @Embedded
     private Direccion direccion;
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public Especialidad getEspecialidad() {
-        return especialidad;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public Direccion getDireccion() {
-        return direccion;
-    }
 
     public Medico(DatosRegistroMedico datosRegistroMedico) {
         this.activo = true;

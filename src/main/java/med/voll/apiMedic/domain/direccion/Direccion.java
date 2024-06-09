@@ -33,23 +33,14 @@ public class Direccion {
         return this;
     }
 
-    public String getCalle() {
-        return calle;
+
+    public Direccion actualizarDireccion(DatosDireccion direccion) {
+        this.calle = direccion.calle();
+        this.numero = direccion.numero();
+        this.distrito = direccion.distrito();
+        this.complemento = direccion.complemento();
+        this.ciudad = direccion.ciudad();
+        return this;
     }
 
-    public String getDistrito() {
-        return distrito;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
 }
