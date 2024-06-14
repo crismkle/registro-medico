@@ -3,9 +3,13 @@ package med.voll.apiMedic.domain.consulta.validaciones;
 import jakarta.validation.ValidationException;
 import med.voll.apiMedic.domain.consulta.ConsultaRepository;
 import med.voll.apiMedic.domain.consulta.DatosAgendarConsulta;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class MedicoConConsulta {
+@Component
+public class MedicoConConsulta implements ValidadorDeConsultas {
 
+    @Autowired
     private ConsultaRepository repository;
 
     public void validar(DatosAgendarConsulta datos){
