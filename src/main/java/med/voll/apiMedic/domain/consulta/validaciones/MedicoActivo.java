@@ -4,7 +4,6 @@ import jakarta.validation.ValidationException;
 import med.voll.apiMedic.domain.consulta.DatosAgendarConsulta;
 import med.voll.apiMedic.domain.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service        // Es un servicio pero también puede ser un compoent
@@ -19,7 +18,10 @@ public class MedicoActivo implements ValidadorDeConsultas {
             return;
         }
 
-        var medicoActivo = repository.findActivoById(datos.idPaciente());
+        var medicoActivo = repository.findActivoById(datos.idMedico());
+
+        System.out.println("IdMedico: " + datos.idMedico());
+        System.out.println("MedicoActivo: " + medicoActivo);
 
         if (!medicoActivo){
             throw new ValidationException("No se permite agendar citas con médicos inactivos");

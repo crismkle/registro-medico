@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Component
 public class HorarioDeAnticipacion implements ValidadorDeConsultas {
 
-    @Autowired
     public void validar(DatosAgendarConsulta datos){
 
         var ahora = LocalDateTime.now();

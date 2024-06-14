@@ -10,7 +10,7 @@ import java.time.DayOfWeek;
 @Component
 public class HorarioDeFuncionamientoClinica implements ValidadorDeConsultas {
 
-    @Autowired
+    
     public void validar(DatosAgendarConsulta datos){
 
         var domingo = DayOfWeek.SUNDAY.equals(datos.fecha().getDayOfWeek());
