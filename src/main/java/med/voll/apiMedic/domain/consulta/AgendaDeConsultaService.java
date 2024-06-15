@@ -1,10 +1,8 @@
 package med.voll.apiMedic.domain.consulta;
 
-import med.voll.apiMedic.domain.consulta.validaciones.HorarioDeAnticipacion;
 import med.voll.apiMedic.domain.consulta.validaciones.ValidadorDeConsultas;
 import med.voll.apiMedic.domain.medico.Medico;
 import med.voll.apiMedic.domain.medico.MedicoRepository;
-import med.voll.apiMedic.domain.paciente.Paciente;
 import med.voll.apiMedic.domain.paciente.PacienteRepository;
 import med.voll.apiMedic.infra.errores.ValidacionDeIntegridad;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +63,6 @@ public class AgendaDeConsultaService {
             throw new ValidacionDeIntegridad("Debe seleccionarse una especialidad para el médico");
         }
 
-        return medicoRepository.seleccionarMedicoConEspecialidadEnFecha(datos.especialidad(), datos.fecha());
+        return medicoRepository.seleccionarMedicoConEspecialidadEnData(datos.especialidad(), datos.fecha());
     }
 }
