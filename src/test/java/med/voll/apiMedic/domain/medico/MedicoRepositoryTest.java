@@ -35,8 +35,9 @@ class MedicoRepositoryTest {
 
     @Test
     @DisplayName("Debería retornar nulo cuando el médico se encuentre en consulta con otro paciente en ese horario.")
-    void seleccionarMedicoConEspecialidadEnFechaEscenario1() {
+    void seleccionarMedicoConEspecialidadEnFechaEscenario1() {  // Caso médico ocupado con otro paciente
 
+        // Given
         var proximoLunes10H = LocalDate.now()
                 .with(TemporalAdjusters.next(DayOfWeek.MONDAY))
                 .atTime(10, 0);
@@ -46,18 +47,20 @@ class MedicoRepositoryTest {
 //        System.out.println(medicoGuardado.getId() + medicoGuardado.getNombre());
 
         var paciente = registrarPaciente("Antonio", "as@gmail.com", "773534");
-
         registrarConsulta(medico, paciente, proximoLunes10H);
 
+        // When
         var medicoLibre = medicoRepository.seleccionarMedicoConEspecialidadEnData(Especialidad.CARDIOLOGIA, proximoLunes10H);
 
+        // Then
         assertThat(medicoLibre).isNull();
     }
 
     @Test
     @DisplayName("Debería retornar un médico cuando realice la consulta en la base de datos para ese horario.")
-    void seleccionarMedicoConEspecialidadEnFechaEscenario2() {
+    void seleccionarMedicoConEspecialidadEnFechaEscenario2() {  // Caso de médico disponible
 
+        // Given
         var proximoLunes10H = LocalDate.now()
                 .with(TemporalAdjusters.next(DayOfWeek.MONDAY))
                 .atTime(10, 0);
@@ -66,8 +69,10 @@ class MedicoRepositoryTest {
 //        Medico medicoGuardado = medicoRepository.findById(medico.getId()).orElse(null);
 //        System.out.println(medicoGuardado.getId() + medicoGuardado.getNombre());
 
+        // When
         var medicoLibre = medicoRepository.seleccionarMedicoConEspecialidadEnData(Especialidad.CARDIOLOGIA, proximoLunes10H);
 
+        // Then
         assertThat(medicoLibre).isEqualTo(medico);
     }
 
