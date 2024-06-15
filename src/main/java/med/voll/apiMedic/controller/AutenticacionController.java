@@ -5,7 +5,6 @@ import med.voll.apiMedic.domain.usuarios.DatosAutenticacionUsuario;
 import med.voll.apiMedic.domain.usuarios.Usuario;
 import med.voll.apiMedic.infra.security.DatosJWTToken;
 import med.voll.apiMedic.infra.security.TokenService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
